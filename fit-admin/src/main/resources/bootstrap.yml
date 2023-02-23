@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: fit-admin
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/fit?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    password: admin
+    username: root
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 10
+      idle-timeout: 500000
+      max-lifetime: 540000
+      connection-timeout: 60000
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    timeout: 3000ms
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:8848
+      config:
+        server-addr: http://localhost:8848
+        file-extension: yaml
+feign:
+  okhttp:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+server:
+  port: 8083
+  ssl:
+    enabled: false
+mybatis-plus:
+  type-aliases-package: com.support.fit.mbg.model
+  mapper-locations:
+    - classpath*:com/support/fit/admin/mapping/*.xml
+    - classpath*:com/support/fit/mbg/mapping/*.xml
+logging:
+  level:
+    root: info

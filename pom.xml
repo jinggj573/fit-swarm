@@ -17,7 +17,8 @@
     <module>fit-portal</module>
     <module>fit-admin</module>
     <module>fit-generator</module>
-      <module>fit-monitor</module>
+    <module>fit-monitor</module>
+    <module>fit-mbg</module>
   </modules>
 
   <parent>
@@ -44,20 +45,23 @@
     <hutool.version>5.8.0</hutool.version>
     <mybatis-generator.version>1.4.1</mybatis-generator.version>
     <mybatis.version>3.5.9</mybatis.version>
-    <mysql-connector.version>8.0.29</mysql-connector.version>
     <spring-data-commons.version>2.7.0</spring-data-commons.version>
-    <jjwt.version>0.9.1</jjwt.version>
+    <jjwt.version>0.9.0</jjwt.version>
     <aliyun-oss.version>2.5.0</aliyun-oss.version>
     <logstash-logback.version>5.3</logstash-logback.version>
     <admin-starter-server.version>2.7.0</admin-starter-server.version>
     <minio.version>8.4.1</minio.version>
-    <knife4j.version>3.0.3</knife4j.version>
+    <knife4j.version>2.0.9</knife4j.version>
     <nimbus-jose-jwt.version>9.23</nimbus-jose-jwt.version>
-    <mall-common.version>1.0-SNAPSHOT</mall-common.version>
-    <mall-mbg.version>1.0-SNAPSHOT</mall-mbg.version>
+    <fit-common.version>1.0-SNAPSHOT</fit-common.version>
+    <fit-mbg.version>1.0-SNAPSHOT</fit-mbg.version>
+    <mybatis-plus.version>3.5.1</mybatis-plus.version>
+    <mysql-connector.version>8.0.29</mysql-connector.version>
+    <captcha.version>1.2.7</captcha.version>
+    <pig-captcha.version>2.2.2</pig-captcha.version>
+    <springdoc.version>1.6.9</springdoc.version>
+    <swagger.core.version>2.2.0</swagger.core.version>
   </properties>
-
-
 
   <dependencies>
     <dependency>
@@ -108,15 +112,15 @@
       </dependency>
       <!--mall通用模块-->
       <dependency>
-        <groupId>com.macro.mall</groupId>
-        <artifactId>mall-common</artifactId>
-        <version>${mall-common.version}</version>
+        <groupId>com.support.fit</groupId>
+        <artifactId>fit-common</artifactId>
+        <version>${fit-common.version}</version>
       </dependency>
       <!--mall中MBG生成模块-->
       <dependency>
-        <groupId>com.macro.mall</groupId>
-        <artifactId>mall-mbg</artifactId>
-        <version>${mall-mbg.version}</version>
+        <groupId>com.support.fit</groupId>
+        <artifactId>fit-mbg</artifactId>
+        <version>${fit-common.version}</version>
       </dependency>
       <!--MyBatis分页插件starter-->
       <dependency>
@@ -159,25 +163,19 @@
         <artifactId>mybatis-generator-core</artifactId>
         <version>${mybatis-generator.version}</version>
       </dependency>
-      <!-- MyBatis-->
-      <dependency>
-        <groupId>org.mybatis</groupId>
-        <artifactId>mybatis</artifactId>
-        <version>${mybatis.version}</version>
-      </dependency>
-      <!--Mysql数据库驱动-->
-      <!--<dependency>
-          <groupId>mysql</groupId>
-          <artifactId>mysql-connector-java</artifactId>
-          <version>${mysql-connector.version}</version>
-      </dependency>-->
 
       <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
-        <version>5.1.4</version>
-        <scope>runtime</scope>
+        <version>${mysql-connector.version}</version>
       </dependency>
+
+      <!--<dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.8</version>
+        <scope>runtime</scope>
+      </dependency>-->
 
       <!--SpringData工具包-->
       <dependency>
@@ -221,6 +219,58 @@
         <artifactId>minio</artifactId>
         <version>${minio.version}</version>
       </dependency>
+
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis-plus.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+        <version>2.7.0</version>
+      </dependency>
+
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+        <version>2.7.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.anji-plus</groupId>
+        <artifactId>captcha-spring-boot-starter</artifactId>
+        <version>${captcha.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.pig4cloud.plugin</groupId>
+        <artifactId>captcha-spring-boot-starter</artifactId>
+        <version>${pig-captcha.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-webmvc-core</artifactId>
+        <version>${springdoc.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger.core.v3</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${swagger.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-webflux-ui</artifactId>
+        <version>${springdoc.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-security</artifactId>
+        <version>${springdoc.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -228,40 +278,9 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
