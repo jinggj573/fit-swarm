@@ -20,8 +20,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-
-
     <dependencies>
         <dependency>
             <groupId>com.support.fit</groupId>
@@ -39,7 +37,7 @@
     </dependencies>
 
     <build>
-        <!--       这样也可以把所有的xml文件，打包到相应位置。-->
+        <!--这样也可以把所有的xml文件，打包到相应位置。-->
         <finalName>fit-mbg</finalName>
         <resources>
             <resource>

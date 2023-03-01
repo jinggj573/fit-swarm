@@ -89,11 +89,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+
     @Bean
     public SmsCodeAuthenticationProvider providers(){
         SmsCodeAuthenticationProvider provider =new SmsCodeAuthenticationProvider();
         return provider;
     }
-
 
 }
