@@ -36,14 +36,13 @@ import java.util.List;
 @AllArgsConstructor
 @EnableAuthorizationServer
 public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
     @Autowired
     public DataSource dataSource;
     @Autowired
     private UserServiceImpl userDetailsService;
-
-    // 认证管理器
-    @Autowired
-    private AuthenticationManager authenticationManager;
     @Autowired
     private JwtTokenEnhancer jwtTokenEnhancer;
 
@@ -112,13 +111,13 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .pathMapping("/oauth/error", "/view/oauth/error")*/
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
                 .setClientDetailsService(jdbcClientDetailsService());
-        /*
-         * 默认获取token的路径是/oauth/token，通过pathMapping方法，可改变默认路径
-         * pathMapping用来配置端点URL链接，有两个参数，都将以 "/" 字符为开始的字符串
-         * defaultPath：这个端点URL的默认链接
-         * customPath：你要进行替代的URL链接
-         */
-        //endpoints.pathMapping("/oauth/token", "/oauth/token");
+                /*
+                 * 默认获取token的路径是/oauth/token，通过pathMapping方法，可改变默认路径
+                 * pathMapping用来配置端点URL链接，有两个参数，都将以 "/" 字符为开始的字符串
+                 * defaultPath：这个端点URL的默认链接
+                 * customPath：你要进行替代的URL链接
+                 */
+                //endpoints.pathMapping("/oauth/token", "/oauth/token");
     }
 
     /**

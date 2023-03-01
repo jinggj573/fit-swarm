@@ -62,9 +62,9 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
-                .build();
-                //.securityContexts(securityContexts())
-                //.securitySchemes(securitySchemes());
+                .build()
+                .securityContexts(securityContexts())
+                .securitySchemes(securitySchemes());
     }
 
     private List<SecurityScheme> securitySchemes() {

@@ -34,7 +34,8 @@ public class AuthController {
     @Autowired
     private AuthorizationCodeServices  authorizationCodeServices;
 
-    /*@ApiOperation("Oauth2获取token")
+    /*@SneakyThrows
+    @ApiOperation("Oauth2获取token")
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     public CommonResult<Oauth2TokenDto> postAccessToken(HttpServletRequest request,
                                                         @ApiParam("授权模式") @RequestParam String grant_type,
@@ -62,15 +63,6 @@ public class AuthController {
 
     /**
      * 授权码模式
-     * @param request
-     * @param grant_type
-     * @param client_id
-     * @param client_secret
-     * @param refresh_token
-     * @param code
-     * @param redirect_uri
-     * @return
-     * @throws HttpRequestMethodNotSupportedException
      */
     @ApiOperation("Oauth2获取token")
     @RequestMapping(value = "/token", method = RequestMethod.POST)
@@ -98,26 +90,5 @@ public class AuthController {
         return CommonResult.success(oauth2TokenDto);
     }
 
-    /*@ApiOperation("Oauth2获取授权码")
-    @RequestMapping(value = "customer/authorize", method = RequestMethod.POST)
-    public CommonResult<Oauth2TokenDto> postAccessToken(HttpServletRequest request,
-                                                        @ApiParam("授权模式") @RequestParam(defaultValue = "code") String response_type,
-                                                        @ApiParam("Oauth2客户端ID") @RequestParam String client_id,
-                                                        @ApiParam("刷新token") @RequestParam(required = false) String refresh_token,
-                                                        @ApiParam("重定向URI") @RequestParam String redirect_uri) throws HttpRequestMethodNotSupportedException {
-        Map<String, String> parameters = new HashMap<>(16);
-        parameters.put("grant_type",response_type);
-        parameters.put("client_id",client_id);
-        parameters.putIfAbsent("redirect_uri",redirect_uri);
-        authorizationEndpoint.authorize(null, parameters,
-               null, null);
-        OAuth2AccessToken oAuth2AccessToken = tokenEndpoint.postAccessToken(request.getUserPrincipal(), parameters).getBody();
-        Oauth2TokenDto oauth2TokenDto = Oauth2TokenDto.builder()
-                .token(oAuth2AccessToken.getValue())
-                .refreshToken(oAuth2AccessToken.getRefreshToken().getValue())
-                .expiresIn(oAuth2AccessToken.getExpiresIn())
-                .tokenHead(AuthConstant.JWT_TOKEN_PREFIX).build();
 
-        return CommonResult.success(oauth2TokenDto);
-    }*/
 }
