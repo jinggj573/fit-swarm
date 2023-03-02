@@ -6,6 +6,7 @@ import com.support.fit.common.constant.AuthConstant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
@@ -34,23 +35,23 @@ public class AuthController {
     @Autowired
     private AuthorizationCodeServices  authorizationCodeServices;
 
-    /*@SneakyThrows
+    @SneakyThrows
     @ApiOperation("Oauth2获取token")
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     public CommonResult<Oauth2TokenDto> postAccessToken(HttpServletRequest request,
-                                                        @ApiParam("授权模式") @RequestParam String grant_type,
-                                                        @ApiParam("Oauth2客户端ID") @RequestParam String client_id,
-                                                        @ApiParam("Oauth2客户端秘钥") @RequestParam String client_secret,
-                                                        @ApiParam("刷新token") @RequestParam(required = false) String refresh_token,
-                                                        @ApiParam("登录用户名") @RequestParam(required = false) String username,
-                                                        @ApiParam("登录密码") @RequestParam(required = false) String password) throws HttpRequestMethodNotSupportedException {
+                                                        @ApiParam("授权模式") @RequestParam String grantType,
+                                                        @ApiParam("Oauth2客户端ID") @RequestParam String clientId,
+                                                        @ApiParam("Oauth2客户端秘钥") @RequestParam String clientSecret,
+                                                        @ApiParam("刷新token") @RequestParam(required = false) String refreshToken,
+                                                        @ApiParam("登录用户名") @RequestParam(required = false) String userName,
+                                                        @ApiParam("登录密码") @RequestParam(required = false) String passWord) throws HttpRequestMethodNotSupportedException {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("grant_type",grant_type);
-        parameters.put("client_id",client_id);
-        parameters.put("client_secret",client_secret);
-        parameters.putIfAbsent("refresh_token",refresh_token);
-        parameters.putIfAbsent("username",username);
-        parameters.putIfAbsent("password",password);
+        parameters.put("grant_type",grantType);
+        parameters.put("client_id",clientId);
+        parameters.put("client_secret",clientSecret);
+        parameters.putIfAbsent("refresh_token",refreshToken);
+        parameters.putIfAbsent("username",userName);
+        parameters.putIfAbsent("password",passWord);
         OAuth2AccessToken oAuth2AccessToken = tokenEndpoint.postAccessToken(request.getUserPrincipal(), parameters).getBody();
         Oauth2TokenDto oauth2TokenDto = Oauth2TokenDto.builder()
                 .token(oAuth2AccessToken.getValue())
@@ -59,12 +60,12 @@ public class AuthController {
                 .tokenHead(AuthConstant.JWT_TOKEN_PREFIX).build();
 
         return CommonResult.success(oauth2TokenDto);
-    }*/
+    }
 
     /**
      * 授权码模式
      */
-    @ApiOperation("Oauth2获取token")
+    /*@ApiOperation("Oauth2获取token")
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     public CommonResult<Oauth2TokenDto> postAccessToken(HttpServletRequest request,
                                                         @ApiParam("授权模式") @RequestParam String grant_type,
@@ -88,7 +89,7 @@ public class AuthController {
                 .tokenHead(AuthConstant.JWT_TOKEN_PREFIX).build();
 
         return CommonResult.success(oauth2TokenDto);
-    }
+    }*/
 
 
 }

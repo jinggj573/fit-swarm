@@ -19,7 +19,7 @@ spring:
           uri:
             lb://fit-auth
           predicates:
-            - Path=/auth/**
+            - Path=/oauth/**
           filters:
             - ValidateCodeGatewayFilter
             - PasswordDecoderFilter

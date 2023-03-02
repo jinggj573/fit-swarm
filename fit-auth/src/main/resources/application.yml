@@ -32,8 +32,6 @@ management:
       exposure:
         include: "*"
 server:
-  servlet:
-    context-path: /fit-auth
   port: 8081
   ssl:
     enabled: false
