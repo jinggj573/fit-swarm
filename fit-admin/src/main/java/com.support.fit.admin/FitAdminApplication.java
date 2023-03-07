@@ -14,7 +14,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @MapperScan(basePackages = {"com.support.fit.admin.mapper","com.support.fit.mbg.mapper"})
 public class FitAdminApplication {
 
-
     public static void main(String[] args) {
         SpringApplication.run(FitAdminApplication.class, args);
     }
