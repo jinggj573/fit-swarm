@@ -86,6 +86,16 @@
             <artifactId>springdoc-openapi-webflux-ui</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.support.fit</groupId>
+            <artifactId>fit-common-core</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

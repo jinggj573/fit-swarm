@@ -15,7 +15,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-
     <artifactId>fit-mbg</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -25,6 +24,12 @@
             <groupId>com.support.fit</groupId>
             <artifactId>fit-common</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.support.fit</groupId>
+            <artifactId>fit-common-swagger</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -34,6 +39,18 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.support.fit</groupId>
+            <artifactId>fit-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.20</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

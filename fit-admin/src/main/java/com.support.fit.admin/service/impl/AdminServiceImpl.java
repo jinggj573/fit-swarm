@@ -5,7 +5,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.support.fit.admin.mapper.AdminRoleRelationMapper;
 import com.support.fit.admin.service.AdminService;
-import com.support.fit.common.domain.UserDto;
+import com.support.fit.common.core.domain.UserDto;
 import com.support.fit.mbg.mapper.UmsAdminMapper;
 import com.support.fit.mbg.model.UmsAdmin;
 import com.support.fit.mbg.model.UmsAdminExample;

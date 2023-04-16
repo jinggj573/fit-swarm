@@ -1,8 +1,8 @@
 package com.support.fit.auth.controller;
 
 import com.support.fit.auth.domain.Oauth2TokenDto;
-import com.support.fit.common.api.CommonResult;
-import com.support.fit.common.constant.AuthConstant;
+import com.support.fit.common.core.api.CommonResult;
+import com.support.fit.common.core.constant.AuthConstant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

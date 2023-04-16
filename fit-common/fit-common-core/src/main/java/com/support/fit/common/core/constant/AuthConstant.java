@@ -1,4 +1,4 @@
-package com.support.fit.common.constant;
+package com.support.fit.common.core.constant;
 
 public interface AuthConstant {
     /**

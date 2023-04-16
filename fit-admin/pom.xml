@@ -27,6 +27,11 @@
         </dependency>
         <dependency>
             <groupId>com.support.fit</groupId>
+            <artifactId>fit-common-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.support.fit</groupId>
             <artifactId>fit-mbg</artifactId>
         </dependency>
         <dependency>
