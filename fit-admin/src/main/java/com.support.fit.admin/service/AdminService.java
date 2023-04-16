@@ -1,6 +1,6 @@
 package com.support.fit.admin.service;
 
-import com.support.fit.common.domain.UserDto;
+import com.support.fit.common.core.domain.UserDto;
 import com.support.fit.mbg.model.UmsAdmin;
 import com.support.fit.mbg.model.UmsRole;
 
@@ -16,4 +16,6 @@ public interface AdminService {
      * 获取用户对于角色
      */
     List<UmsRole> getRoleList(Long adminId);
+
+
 }

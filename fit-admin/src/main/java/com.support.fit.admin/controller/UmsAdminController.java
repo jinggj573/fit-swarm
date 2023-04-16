@@ -1,18 +1,21 @@
 package com.support.fit.admin.controller;
 
 import com.support.fit.admin.service.AdminService;
-import com.support.fit.common.domain.UserDto;
+import com.support.fit.admin.service.impl.MenuServiceImpl;
+import com.support.fit.common.core.domain.UserDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Api(tags = "UmsAdminController", description = "后台用户管理")
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class UmsAdminController {
-    @Autowired
-    private AdminService adminService;
+    private final AdminService adminService;
+
+    private final MenuServiceImpl menuService;
 
     @ApiOperation("根据用户名获取通用用户信息")
     @RequestMapping(value = "/loadByUsername", method = RequestMethod.GET)
@@ -21,4 +24,13 @@ public class UmsAdminController {
         UserDto userDTO = adminService.loadUserByName(username);
         return userDTO;
     }
+
+    /*@ApiOperation("根据用户名获取通用用户信息")
+    @GetMapping
+    @ResponseBody
+    public R<List<Tree<Long>>> getUserMenu(Long parentId) {
+        Set<UmsMenu> menuSet = Arrays.asList(1L).stream().map(menuService::findMenuByRoleId)
+                .flatMap(Collection::stream).collect(Collectors.toSet());
+        return menuSet;
+    }*/
 }

@@ -9,42 +9,25 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-
-  <modules>
-    <module>fit-common</module>
-    <module>fit-gateway</module>
-    <module>fit-auth</module>
-    <module>fit-portal</module>
-    <module>fit-admin</module>
-    <module>fit-generator</module>
-    <module>fit-monitor</module>
-    <module>fit-mbg</module>
-  </modules>
-
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.0</version>
-    <relativePath/>
-  </parent>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <skipTests>true</skipTests>
-    <docker.host>http://192.168.3.105:2375</docker.host>
-    <docker.maven.plugin.version>0.40.0</docker.maven.plugin.version>
     <java.version>1.8</java.version>
-    <spring-boot.version>2.7.0</spring-boot.version>
-    <spring-cloud.version>2021.0.3</spring-cloud.version>
-    <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <spring-boot.version>2.7.10</spring-boot.version>
+    <spring-cloud.version>2021.0.6</spring-cloud.version>
+    <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+    <spring-boot-admin.version>2.7.10</spring-boot-admin.version>
+    <spring.authorization.version>0.4.1</spring.authorization.version>
     <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
     <spring.authorization.version>0.4.0</spring.authorization.version>
     <pagehelper.version>5.3.0</pagehelper.version>
     <druid.version>1.2.9</druid.version>
     <hutool.version>5.8.0</hutool.version>
+    <jasypt.version>3.0.5</jasypt.version>
     <mybatis-generator.version>1.4.1</mybatis-generator.version>
-    <mybatis.version>3.5.9</mybatis.version>
     <spring-data-commons.version>2.7.0</spring-data-commons.version>
     <jjwt.version>0.9.0</jjwt.version>
     <aliyun-oss.version>2.5.0</aliyun-oss.version>
@@ -63,34 +46,65 @@
     <swagger.core.version>2.2.0</swagger.core.version>
   </properties>
 
+  <!-- 以下依赖 全局所有的模块都会引入  -->
   <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-aop</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>cn.hutool</groupId>
-      <artifactId>hutool-all</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-configuration-processor</artifactId>
       <optional>true</optional>
     </dependency>
+    <!--配置文件加解密-->
+    <dependency>
+      <groupId>com.github.ulisesbocchio</groupId>
+      <artifactId>jasypt-spring-boot-starter</artifactId>
+      <version>${jasypt.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+    <!--监控客户端-->
+    <dependency>
+      <groupId>de.codecentric</groupId>
+      <artifactId>spring-boot-admin-starter-client</artifactId>
+      <version>${spring-boot-admin.version}</version>
+    </dependency>
+
+    <!--Lombok-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!--测试依赖-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+    </dependency>
   </dependencies>
+
+  <modules>
+    <module>fit-common</module>
+    <module>fit-gateway</module>
+    <module>fit-auth</module>
+    <module>fit-portal</module>
+    <module>fit-admin</module>
+    <module>fit-generator</module>
+    <module>fit-monitor</module>
+    <module>fit-mbg</module>
+  </modules>
 
   <dependencyManagement>
     <dependencies>
@@ -110,10 +124,31 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <!--mall通用模块-->
+
+      <!-- spring boot 依赖 -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--fit通用模块-->
       <dependency>
         <groupId>com.support.fit</groupId>
         <artifactId>fit-common</artifactId>
+        <version>${fit-common.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.support.fit</groupId>
+        <artifactId>fit-common-core</artifactId>
+        <version>${fit-common.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.support.fit</groupId>
+        <artifactId>fit-common-swagger</artifactId>
         <version>${fit-common.version}</version>
       </dependency>
       <!--mall中MBG生成模块-->
@@ -157,14 +192,6 @@
         <artifactId>mysql-connector-java</artifactId>
         <version>${mysql-connector.version}</version>
       </dependency>
-
-      <!--<dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>5.1.8</version>
-        <scope>runtime</scope>
-      </dependency>-->
-
       <!--SpringData工具包-->
       <dependency>
         <groupId>org.springframework.data</groupId>
@@ -214,18 +241,6 @@
         <version>${mybatis-plus.version}</version>
       </dependency>
 
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-        <version>2.7.0</version>
-      </dependency>
-
-
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-jdbc</artifactId>
-        <version>2.7.0</version>
-      </dependency>
 
       <dependency>
         <groupId>com.github.anji-plus</groupId>

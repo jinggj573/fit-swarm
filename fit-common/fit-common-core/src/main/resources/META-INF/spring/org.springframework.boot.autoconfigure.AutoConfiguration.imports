@@ -1,0 +1,4 @@
+com.support.fit.common.core.config.JacksonConfiguration
+com.support.fit.common.core.config.RedisTemplateConfiguration
+com.support.fit.common.core.config.RestTemplateConfiguration
+com.support.fit.common.core.config.WebMvcConfiguration
