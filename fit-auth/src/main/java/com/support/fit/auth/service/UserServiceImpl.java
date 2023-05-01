@@ -1,14 +1,7 @@
 package com.support.fit.auth.service;
 
-import com.support.fit.auth.domain.SecurityUser;
-import com.support.fit.common.constant.MessageConstant;
-import com.support.fit.common.domain.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AccountExpiredException;
-import org.springframework.security.authentication.CredentialsExpiredException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,7 +21,7 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("MyUserServiceImpl loadUserByUsername method start invoke !!");
+        /*log.info("MyUserServiceImpl loadUserByUsername method start invoke !!");
         String clientId = request.getParameter("client_id");
         log.info("MyUserServiceImpl loadUserByUsername method get the clientId:{} !!",clientId);
         UserDto userDto = adminService.loadUserByName(username);
@@ -51,6 +44,7 @@ public class UserServiceImpl implements UserDetailsService {
             log.error("该账户的登录凭证已过期，请重新登录!");
             throw new CredentialsExpiredException(MessageConstant.CREDENTIALS_EXPIRED);
         }
-        return securityUser;
+        return securityUser;*/
+        return null;
     }
 }

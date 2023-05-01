@@ -20,5 +20,6 @@
         <module>fit-common-mybatis</module>
         <module>fit-common-swagger</module>
         <module>fit-common-job</module>
+        <module>fit-common-log</module>
     </modules>
 </project>

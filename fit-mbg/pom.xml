@@ -20,10 +20,6 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <dependency>
-            <groupId>com.support.fit</groupId>
-            <artifactId>fit-common</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.support.fit</groupId>

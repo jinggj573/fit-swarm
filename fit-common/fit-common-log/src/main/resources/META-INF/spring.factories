@@ -1,0 +1,2 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+    com.support.fit.common.log.init.ApplicationLoggerInitializer

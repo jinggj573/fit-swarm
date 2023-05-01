@@ -152,7 +152,7 @@
         <artifactId>fit-common-swagger</artifactId>
         <version>${fit-common.version}</version>
       </dependency>
-      <!--mall中MBG生成模块-->
+      <!--中MBG生成模块-->
       <dependency>
         <groupId>com.support.fit</groupId>
         <artifactId>fit-mbg</artifactId>
