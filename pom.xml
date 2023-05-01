@@ -155,7 +155,13 @@
 
       <dependency>
         <groupId>com.support.fit</groupId>
-        <artifactId>fit-common-swagger</artifactId>
+        <artifactId>fit-common-log</artifactId>
+        <version>${fit-common.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.support.fit</groupId>
+        <artifactId>fit-common-mybatis</artifactId>
         <version>${fit-common.version}</version>
       </dependency>
 
@@ -164,7 +170,14 @@
         <artifactId>fit-common-security</artifactId>
         <version>${fit-common.version}</version>
       </dependency>
-      <!--中MBG生成模块-->
+
+      <dependency>
+        <groupId>com.support.fit</groupId>
+        <artifactId>fit-common-swagger</artifactId>
+        <version>${fit-common.version}</version>
+      </dependency>
+
+      <!--MBG生成模块-->
       <dependency>
         <groupId>com.support.fit</groupId>
         <artifactId>fit-mbg</artifactId>

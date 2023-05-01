@@ -1,18 +1,18 @@
 package com.support.fit.auth.config;
 
 import com.support.fit.auth.service.UserServiceImpl;
-import com.support.fit.auth.sms.SmsCodeAuthenticationProvider;
+import com.support.fit.auth.support.core.FitDaoAuthenticationProvider;
+import com.support.fit.auth.support.core.FormIdentityLoginConfigurer;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * SpringSecurity配置
@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @SpringBootConfiguration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig  {
 
 
     /**
@@ -32,68 +32,56 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.authenticationProvider(providers())
-                .userDetailsService(userDetailsService())
-                .passwordEncoder(passwordEncoder());
 
-    }
-
-    @Override
     @Bean
     public UserDetailsService userDetailsService(){
         return new UserServiceImpl();
     }
 
+
     /**
-     * 支持密码模式配置
+     * spring security 默认的安全策略
+     * @param http security注入点
+     * @return SecurityFilterChain
+     * @throws Exception
+     */
+    @Bean
+    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests(authorizeRequests -> authorizeRequests.antMatchers("/token/*")
+                        .permitAll()// 开放自定义的部分端点
+                        .anyRequest()
+                        .authenticated())
+                .headers()
+                .frameOptions()
+                .sameOrigin()// 避免iframe同源无法登录
+                .and()
+                .apply(new FormIdentityLoginConfigurer()); // 表单登录个性化
+        // 处理 UsernamePasswordAuthenticationToken
+        http.authenticationProvider(new FitDaoAuthenticationProvider());
+        return http.build();
+    }
+
+    /**
+     * 暴露静态资源
+     *
+     * https://github.com/spring-projects/spring-security/issues/10938
+     * @param http
      * @return
      * @throws Exception
      */
-    @Override
     @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    @Order(0)
+    SecurityFilterChain resources(HttpSecurity http) throws Exception {
+        http.requestMatchers((matchers) -> matchers.antMatchers("/actuator/**", "/css/**", "/error"))
+                .authorizeHttpRequests((authorize) -> authorize.anyRequest().permitAll())
+                .requestCache()
+                .disable()
+                .securityContext()
+                .disable()
+                .sessionManagement()
+                .disable();
+        return http.build();
     }
 
-    /**
-     * 配置URL访问授权,必须配置authorizeRequests(),否则启动报错,说是没有启用security技术。
-     * 注意:在这里的身份进行认证与授权没有涉及到OAuth的技术：当访问要授权的URL时,请求会被DelegatingFilterProxy拦截,
-     *      如果还没有授权,请求就会被重定向到登录界面。在登录成功(身份认证并授权)后,请求被重定向至之前访问的URL。
-     * @param http
-     * @throws Exception
-     */
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                // 必须配置，不然OAuth2的http配置不生效----不明觉厉
-                .requestMatchers()
-                .antMatchers("/oauth/**", "/login/**", "/logout/**","/captcha/get",
-                        "/captcha/check","/code/**")
-                .and()
-                .authorizeRequests()
-                // 自定义页面或处理url是，如果不配置全局允许，浏览器会提示服务器将页面转发多次
-                .antMatchers("/auth/login", "/auth/authorize","/code/**")
-                .permitAll()
-                .antMatchers("/v2/api-docs").permitAll()
-                .antMatchers("/oauth/token").permitAll()
-                .anyRequest()
-                .authenticated();
-
-        // 表单登录
-        http.formLogin();
-                // 登录处理url
-                //.loginProcessingUrl("/auth/authorize");
-        http.httpBasic().disable();
-
-    }
-
-
-    @Bean
-    public SmsCodeAuthenticationProvider providers(){
-        SmsCodeAuthenticationProvider provider =new SmsCodeAuthenticationProvider();
-        return provider;
-    }
 
 }
