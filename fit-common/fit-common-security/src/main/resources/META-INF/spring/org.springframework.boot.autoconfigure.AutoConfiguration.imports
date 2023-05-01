@@ -1,0 +1,7 @@
+com.support.fit.common.security.service.FitUserDetailsServiceImpl
+com.support.fit.common.security.service.FitAppUserDetailsServiceImpl
+com.support.fit.common.security.service.FitRedisOAuth2AuthorizationConsentService
+com.support.fit.common.security.service.FitRedisOAuth2AuthorizationService
+com.support.fit.common.security.component.FitSecurityInnerAspect
+com.support.fit.common.security.component.FitSecurityMessageSourceConfiguration
+com.support.fit.common.security.service.FitRemoteRegisteredClientRepository

@@ -149,7 +149,19 @@
 
       <dependency>
         <groupId>com.support.fit</groupId>
+        <artifactId>fit-common-job</artifactId>
+        <version>${fit-common.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.support.fit</groupId>
         <artifactId>fit-common-swagger</artifactId>
+        <version>${fit-common.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.support.fit</groupId>
+        <artifactId>fit-common-security</artifactId>
         <version>${fit-common.version}</version>
       </dependency>
       <!--中MBG生成模块-->

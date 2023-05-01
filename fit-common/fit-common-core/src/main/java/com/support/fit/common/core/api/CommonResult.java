@@ -23,6 +23,10 @@ public class CommonResult<T> implements Serializable {
         this.data = data;
     }
 
+    public CommonResult() {
+
+    }
+
     public static <T> CommonResult<T> success(T data){
         return new CommonResult<T>(ResultCode.SUCCESS.getCode(),ResultCode.SUCCESS.getMessage(),data);
     }
@@ -75,5 +79,13 @@ public class CommonResult<T> implements Serializable {
      */
     public static <T> CommonResult<T> forbidden(T data) {
         return new CommonResult<T>(ResultCode.FORBIDDEN.getCode(), ResultCode.FORBIDDEN.getMessage(), data);
+    }
+
+    public static <T> CommonResult<T> restResult(T data, long code, String msg) {
+        CommonResult<T> apiResult = new CommonResult<>();
+        apiResult.setCode(code);
+        apiResult.setData(data);
+        apiResult.setMessage(msg);
+        return apiResult;
     }
 }

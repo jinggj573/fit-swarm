@@ -1,6 +1,6 @@
 package com.support.fit.auth.domain;
 
-import com.support.fit.common.domain.UserDto;
+import com.support.fit.common.core.domain.UserDto;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
