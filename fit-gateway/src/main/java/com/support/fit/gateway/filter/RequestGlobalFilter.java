@@ -1,7 +1,7 @@
 package com.support.fit.gateway.filter;
 
-import com.support.fit.common.constant.CommonConstants;
-import com.support.fit.common.constant.SecurityConstants;
+import com.support.fit.common.core.constant.CommonConstants;
+import com.support.fit.common.core.constant.SecurityConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;

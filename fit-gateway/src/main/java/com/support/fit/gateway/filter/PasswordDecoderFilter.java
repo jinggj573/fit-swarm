@@ -6,7 +6,7 @@ import cn.hutool.crypto.Mode;
 import cn.hutool.crypto.Padding;
 import cn.hutool.crypto.symmetric.AES;
 import cn.hutool.http.HttpUtil;
-import com.support.fit.common.constant.SecurityConstants;
+import com.support.fit.common.core.constant.SecurityConstants;
 import com.support.fit.gateway.config.GatewayConfigProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

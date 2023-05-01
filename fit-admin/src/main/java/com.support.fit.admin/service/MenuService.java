@@ -7,7 +7,7 @@ import java.util.Set;
 /***
  * 菜单相关的
  */
-public interface MenuService {
+public interface MenuService  {
 
     Set<UmsMenu> findMenuByRoleId(Long roleId);
 }

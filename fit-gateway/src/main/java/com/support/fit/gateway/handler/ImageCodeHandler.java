@@ -1,8 +1,8 @@
 package com.support.fit.gateway.handler;
 
 import com.pig4cloud.captcha.ArithmeticCaptcha;
-import com.support.fit.common.constant.CacheConstants;
-import com.support.fit.common.constant.SecurityConstants;
+import com.support.fit.common.core.constant.CacheConstants;
+import com.support.fit.common.core.constant.SecurityConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ByteArrayResource;

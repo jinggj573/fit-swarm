@@ -19,5 +19,6 @@
         <module>fit-common-security</module>
         <module>fit-common-mybatis</module>
         <module>fit-common-swagger</module>
+        <module>fit-common-job</module>
     </modules>
 </project>
