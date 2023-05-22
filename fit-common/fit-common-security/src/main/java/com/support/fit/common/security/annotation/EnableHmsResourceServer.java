@@ -16,6 +16,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Import({ FitResourceServerAutoConfiguration.class, FitResourceServerConfiguration.class })
-public @interface EnablePigResourceServer {
+public @interface EnableHmsResourceServer {
 
 }

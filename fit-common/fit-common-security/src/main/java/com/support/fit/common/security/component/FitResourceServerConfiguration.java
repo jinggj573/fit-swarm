@@ -24,7 +24,7 @@ public class FitResourceServerConfiguration {
 
     private final PermitAllUrlProperties permitAllUrl;
 
-    private final FitBearerTokenExtractor pigBearerTokenExtractor;
+    private final FitBearerTokenExtractor fitBearerTokenExtractor;
 
     private final OpaqueTokenIntrospector customOpaqueTokenIntrospector;
 
@@ -40,7 +40,7 @@ public class FitResourceServerConfiguration {
                 .oauth2ResourceServer(
                         oauth2 -> oauth2.opaqueToken(token -> token.introspector(customOpaqueTokenIntrospector))
                                 .authenticationEntryPoint(resourceAuthExceptionEntryPoint)
-                                .bearerTokenResolver(pigBearerTokenExtractor))
+                                .bearerTokenResolver(fitBearerTokenExtractor))
                 .headers()
                 .frameOptions()
                 .disable()
