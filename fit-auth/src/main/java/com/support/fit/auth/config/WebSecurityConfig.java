@@ -1,43 +1,18 @@
 package com.support.fit.auth.config;
 
-import com.support.fit.auth.service.UserServiceImpl;
 import com.support.fit.auth.support.core.FitDaoAuthenticationProvider;
 import com.support.fit.auth.support.core.FormIdentityLoginConfigurer;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
- * SpringSecurity配置
+ * 服务安全相关配置
  */
-@Configuration
 @EnableWebSecurity
-@SpringBootConfiguration
 public class WebSecurityConfig  {
-
-
-    /**
-     * 引入密码加密类
-     * @return
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return new UserServiceImpl();
-    }
-
 
     /**
      * spring security 默认的安全策略
