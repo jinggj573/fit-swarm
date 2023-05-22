@@ -2,10 +2,10 @@ package com.support.fit.common.security.service;
 
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
-import com.support.fit.admin.feign.RemoteClientDetailsService;
 import com.support.fit.common.core.constant.CacheConstants;
 import com.support.fit.common.core.constant.SecurityConstants;
 import com.support.fit.common.core.util.RetOps;
+import com.support.fit.mbg.feign.RemoteClientDetailsService;
 import com.support.fit.mbg.model.SysOauthClientDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

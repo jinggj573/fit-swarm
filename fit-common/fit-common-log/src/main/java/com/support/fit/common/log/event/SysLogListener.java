@@ -1,6 +1,6 @@
 package com.support.fit.common.log.event;
 
-import com.support.fit.admin.feign.RemoteLogService;
+import com.support.fit.mbg.feign.RemoteLogService;
 import com.support.fit.mbg.model.SysLog;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;

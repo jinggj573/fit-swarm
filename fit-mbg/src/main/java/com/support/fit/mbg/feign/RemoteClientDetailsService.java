@@ -1,4 +1,4 @@
-package com.support.fit.admin.feign;
+package com.support.fit.mbg.feign;
 
 import com.support.fit.common.core.api.CommonResult;
 import com.support.fit.common.core.constant.SecurityConstants;

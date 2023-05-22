@@ -21,11 +21,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.support.fit</groupId>
-            <artifactId>fit-common-core</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
@@ -87,8 +82,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
-
-
     </dependencies>
 
     <build>

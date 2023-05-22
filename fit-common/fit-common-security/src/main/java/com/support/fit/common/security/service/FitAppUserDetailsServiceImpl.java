@@ -1,10 +1,10 @@
 package com.support.fit.common.security.service;
 
-import com.support.fit.admin.feign.RemoteUserService;
 import com.support.fit.common.core.api.CommonResult;
 import com.support.fit.common.core.constant.CacheConstants;
 import com.support.fit.common.core.constant.SecurityConstants;
 import com.support.fit.mbg.dto.UserInfo;
+import com.support.fit.mbg.feign.RemoteUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
