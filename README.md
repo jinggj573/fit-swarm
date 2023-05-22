@@ -14,8 +14,6 @@ fit
 ├── fit-gateway -- 基于Spring Cloud Gateway的微服务API网关服务
 ├── fit-monitor -- 基于Spring Boot Admin的微服务监控中心
 ├── fit-admin -- 后台管理系统服务
-├── fit-search -- 基于Elasticsearch的商品搜索系统服务
-├── fit-portal -- 移动端商城系统服务
 └── config -- 配置中心存储的配置
 ```
 
