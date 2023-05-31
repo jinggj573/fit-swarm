@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @Slf4j
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.support.fit")
 @EnableDiscoveryClient
 @SpringBootApplication
 @MapperScan(basePackages = {"com.support.fit.admin.mapper","com.support.fit.mbg.mapper"})

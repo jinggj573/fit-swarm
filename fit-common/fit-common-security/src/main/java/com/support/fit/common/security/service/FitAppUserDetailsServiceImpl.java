@@ -10,6 +10,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  *
  */
 @Slf4j
+@Primary
 @RequiredArgsConstructor
 public class FitAppUserDetailsServiceImpl implements FitUserDetailsService {
 
@@ -62,7 +64,7 @@ public class FitAppUserDetailsServiceImpl implements FitUserDetailsService {
      * @return true/false
      */
     @Override
-    public boolean support(String clientId, String grantType) {
+    public boolean  support(String clientId, String grantType) {
         return SecurityConstants.APP.equals(grantType);
     }
 

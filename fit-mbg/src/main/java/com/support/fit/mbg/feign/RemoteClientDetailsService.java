@@ -2,14 +2,17 @@ package com.support.fit.mbg.feign;
 
 import com.support.fit.common.core.api.CommonResult;
 import com.support.fit.common.core.constant.SecurityConstants;
+import com.support.fit.common.core.constant.ServiceNameConstants;
 import com.support.fit.mbg.model.SysOauthClientDetails;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient("fit-admin")
+@FeignClient(contextId = "remoteClientDetailsService",value = ServiceNameConstants.UMPS_SERVICE)
+@Component
 public interface RemoteClientDetailsService {
 
     /**

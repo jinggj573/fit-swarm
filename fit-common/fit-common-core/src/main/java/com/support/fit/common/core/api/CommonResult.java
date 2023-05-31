@@ -1,5 +1,6 @@
 package com.support.fit.common.core.api;
 
+import com.support.fit.common.core.constant.CommonConstants;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -29,6 +30,14 @@ public class CommonResult<T> implements Serializable {
 
     public static <T> CommonResult<T> ok() {
         return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), null);
+    }
+
+    public static <T> CommonResult<T> ok(T data) {
+        return restResult(data, CommonConstants.SUCCESS, null);
+    }
+
+    public static <T> CommonResult<T> ok(T data, String msg) {
+        return restResult(data, CommonConstants.SUCCESS, msg);
     }
 
     public static <T> CommonResult<T> success(T data){

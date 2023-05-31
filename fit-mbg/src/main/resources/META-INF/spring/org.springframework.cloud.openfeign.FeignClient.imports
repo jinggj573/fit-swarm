@@ -1,0 +1,4 @@
+com.support.fit.mbg.feign.RemoteClientDetailsService
+com.support.fit.mbg.feign.RemoteLogService
+com.support.fit.mbg.feign.RemoteTokenService
+com.support.fit.mbg.feign.RemoteUserService
