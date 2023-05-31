@@ -8,10 +8,13 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
 import org.springframework.core.Ordered;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR;
 
@@ -37,9 +40,9 @@ public class RequestGlobalFilter implements GlobalFilter, Ordered {
         String rawPath = request.getURI().getRawPath();
         log.info("RequestGlobalFilter method get rawPath is:{}:",rawPath);
         //TODO 全局StripPrefix=1配置 不需要
-        /*String newPath ="/"+ Arrays.stream(StringUtils.tokenizeToStringArray(rawPath,"/")).skip(1L)
-                .collect(Collectors.joining("/"));*/
-        String newPath =rawPath;
+        String newPath ="/"+ Arrays.stream(StringUtils.tokenizeToStringArray(rawPath,"/")).skip(1L)
+                .collect(Collectors.joining("/"));
+        //String newPath =rawPath;
 
         log.info("RequestGlobalFilter get the rawPath ===>:{},newPath====>:{}",rawPath,newPath);
         ServerHttpRequest newRequest = exchange.getRequest().mutate().path(newPath).build();

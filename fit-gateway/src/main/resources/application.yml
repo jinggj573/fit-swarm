@@ -10,31 +10,27 @@ spring:
       config:
         server-addr: http://localhost:8848
     gateway:
+      routes:
+          - id: fit-auth
+            uri: lb://fit-auth
+            predicates:
+              - Path=/auth/**
+            filters:
+              - ValidateCodeGatewayFilter
+              - PasswordDecoderFilter
+          - id: fit-admin
+            uri: lb://fit-admin
+            predicates:
+              - Path=/admin/**
+          - id: openapi
+            uri: lb://fit-gateway
+            predicates:
+              - Path=/v3/api-docs/**
+            filters:
+              - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/$\{path}/v3/api-docs
       discovery:
         locator:
-          enabled: true
-          lower-case-service-id: true
-      routes:
-        - id: fit-auth
-          uri:
-            lb://fit-auth
-          predicates:
-            - Path=/oauth/**
-          filters:
-            - ValidateCodeGatewayFilter
-            - PasswordDecoderFilter
-        - id: fit-admin
-          uri:
-            lb://fit-admin
-          predicates:
-            - Path=/admin/**
-        - id: openapi
-          uri:
-            lb://fit-gateway
-          predicates:
-            - Path=/v3/api-docs/**
-          filters:
-            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/$\{path}/v3/api-docs
+          enabled: true #开启自动路由功能，根据服务名称自动创建routes
   redis:
     host: localhost
     port: 6379
