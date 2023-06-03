@@ -54,7 +54,7 @@ public class PasswordDecoderFilter extends AbstractGatewayFilterFactory {
         return (exchange,chain) ->{
             ServerHttpRequest request = exchange.getRequest();
             //不是登录请求，直接向下执行
-            if(StrUtil.containsAnyIgnoreCase(request.getURI().getPath(), SecurityConstants.OAUTH_TOKEN_URL)){
+            if(!StrUtil.containsAnyIgnoreCase(request.getURI().getPath(), SecurityConstants.OAUTH_TOKEN_URL)){
                 return chain.filter(exchange);
             }
 
@@ -63,15 +63,17 @@ public class PasswordDecoderFilter extends AbstractGatewayFilterFactory {
                 return chain.filter(exchange);
             }
 
-            //TODO 这里是在干什么？  具体作用是什么
             Class inClass = String.class;
             Class outClass = String.class;
             ServerRequest serverRequest = ServerRequest.create(exchange,messageReader);
+
             Mono<?> modifiedBody = serverRequest.bodyToMono(inClass).flatMap(decryptAES());
+
             BodyInserter bodyInserter = BodyInserters.fromPublisher(modifiedBody, outClass);
             HttpHeaders headers = new HttpHeaders();
             headers.putAll(exchange.getRequest().getHeaders());
             headers.remove(HttpHeaders.CONTENT_LENGTH);
+
             headers.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE);
             CachedBodyOutputMessage bodyOutputMes =new CachedBodyOutputMessage(exchange,headers);
             return bodyInserter.insert(bodyOutputMes,new BodyInserterContext()).then(Mono.defer(() ->{
