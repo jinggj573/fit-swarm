@@ -110,9 +110,12 @@
 
             <!--把src/main/resources下面所有的文件，都包含到class目录-->
             <resource>
-                <directory>src\main\resources</directory>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
                 <includes>
-                    <include>**/*.*</include>
+                    <include>application*</include>
+                    <include>bootstrap*</include>
+                    <include>banner*</include>
                 </includes>
             </resource>
         </resources>
