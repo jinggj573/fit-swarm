@@ -134,7 +134,7 @@ public abstract class OAuth2ResourceOwnerBaseAuthenticationProvider <T extends O
 
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = buildToken(reqParameters);
 
-            LOGGER.debug("got usernamePasswordAuthenticationToken=" + usernamePasswordAuthenticationToken);
+            LOGGER.debug("get usernamePasswordAuthenticationToken=" + usernamePasswordAuthenticationToken);
 
             Authentication usernamePasswordAuthentication = authenticationManager
                     .authenticate(usernamePasswordAuthenticationToken);
