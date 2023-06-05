@@ -18,14 +18,14 @@ public interface RemoteClientDetailsService {
     /**
      * 通过clientId 查询客户端信息
      * @param clientId 用户名
-     * @return R
+     * @return CommonResult
      */
     @GetMapping(value = "/client/getClientDetailsById/{clientId}", headers = SecurityConstants.HEADER_FROM_IN)
     CommonResult<SysOauthClientDetails> getClientDetailsById(@PathVariable("clientId") String clientId);
 
     /**
      * 查询全部客户端
-     * @return R
+     * @return CommonResult
      */
     @GetMapping(value = "/client/list", headers = SecurityConstants.HEADER_FROM_IN)
     CommonResult<List<SysOauthClientDetails>> listClientDetails();
