@@ -23,7 +23,7 @@ public class OauthClientDetailsController {
 
     private final SysOauthClientDetailsService sysOauthClientDetailsService;
 
-    @Inner(value = false)
+    @Inner
     @GetMapping("/getClientDetailsById/{clientId}")
     public CommonResult getClientDetailsById(@PathVariable String clientId) {
         return CommonResult.ok(sysOauthClientDetailsService.getOne(

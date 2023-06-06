@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Map;
-
-@FeignClient(contextId = "remoteTokenService",value = ServiceNameConstants.AUTH_SERVICE)
 @Component
+@FeignClient(contextId = "remoteTokenService",value = ServiceNameConstants.AUTH_SERVICE)
 public interface RemoteTokenService {
 
     /**

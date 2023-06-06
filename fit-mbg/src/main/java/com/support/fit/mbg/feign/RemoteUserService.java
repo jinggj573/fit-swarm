@@ -8,9 +8,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-@FeignClient(contextId = "remoteUserService",value = ServiceNameConstants.UMPS_SERVICE)
 @Component
+@FeignClient(contextId = "remoteUserService",value = ServiceNameConstants.UMPS_SERVICE)
 public interface RemoteUserService {
     /**
      * 通过手机号码查询用户、角色信息

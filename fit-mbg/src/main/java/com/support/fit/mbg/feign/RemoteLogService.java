@@ -7,9 +7,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-@FeignClient(contextId = "remoteLogService",value = ServiceNameConstants.UMPS_SERVICE)
 @Component
+@FeignClient(contextId = "remoteLogService",value = ServiceNameConstants.UMPS_SERVICE)
 public interface RemoteLogService {
 
     /**
