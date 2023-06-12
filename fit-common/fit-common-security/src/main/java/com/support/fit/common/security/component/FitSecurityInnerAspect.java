@@ -28,7 +28,7 @@ public class FitSecurityInnerAspect implements Ordered {
     @Around("@within(inner) || @annotation(inner)")
     public Object around(ProceedingJoinPoint point, Inner inner) {
         String header = request.getHeader(SecurityConstants.FROM);
-        log.info("访问接口 {} 没有权限", point.getSignature().getName());
+        log.info("FitSecurityInnerAspect header {}", point.getSignature().getName());
         if (inner.value() && !SecurityConstants.FROM_IN.equals(header)) {
             log.info("访问接口 {} 没有权限", point.getSignature().getName());
             throw new AccessDeniedException("Access is denied");

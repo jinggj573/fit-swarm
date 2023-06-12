@@ -58,5 +58,6 @@ public class PermitAllUrlProperties implements InitializingBean {
                             .getPatternValues()
                             .forEach(url -> urls.add(ReUtil.replaceAll(url, PATTERN, "*"))));
         });
+        log.info("urls list =====>:{}",urls);
     }
 }

@@ -55,6 +55,6 @@ public class FitUser extends User implements OAuth2AuthenticatedPrincipal {
 
     @Override
     public String getName() {
-        return this.getName();
+        return this.getUsername();
     }
 }
